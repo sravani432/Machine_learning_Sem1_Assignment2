@@ -1,3 +1,4 @@
+import os
 import pickle
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -7,11 +8,14 @@ def train_and_save_knn_model(
     dataset_path="../data/breast-cancer-wisconsin-data.csv", 
     pkl_filename="../saved_models/knn_model.pkl"
 ):
+    # Ensure the folder exists
+    os.makedirs(os.path.dirname(pkl_filename), exist_ok=True)
+
     # Load dataset from CSV
     df = pd.read_csv(dataset_path)
 
     # Separate features (X) and target (y)
-    # Replace 'target' with the actual column name in your dataset
+    # Replace 'diagnosis' with the actual target column in your dataset
     X = df.drop("diagnosis", axis=1)
     y = df["diagnosis"]
 
@@ -30,9 +34,9 @@ def train_and_save_knn_model(
     accuracy = knn.score(X_test, y_test)
     print(f"Validation Accuracy: {accuracy:.4f}")
 
-    # Save the trained model
+    # Save the trained model along with feature names
     with open(pkl_filename, "wb") as f:
-        pickle.dump(knn, f)
+        pickle.dump({"model": knn, "features": X.columns.tolist()}, f)
 
     print(f"Model saved to {pkl_filename}")
 
