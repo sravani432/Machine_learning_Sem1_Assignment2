@@ -1,44 +1,28 @@
-import os
-import pickle
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
+from sklearn.preprocessing import LabelEncoder
 
-def train_and_save_knn_model(
-    dataset_path="../data/breast-cancer-wisconsin-data.csv", 
-    pkl_filename="../saved_models/knn_model.pkl"
-):
-    # Ensure the folder exists
-    os.makedirs(os.path.dirname(pkl_filename), exist_ok=True)
-
-    # Load dataset from CSV
+def run_knn(dataset_path="data/breast-cancer-wisconsin-data.csv"):
     df = pd.read_csv(dataset_path)
+    le = LabelEncoder()
+    df["diagnosis"] = le.fit_transform(df["diagnosis"])
 
-    # Separate features (X) and target (y)
-    # Replace 'diagnosis' with the actual target column in your dataset
     X = df.drop("diagnosis", axis=1)
     y = df["diagnosis"]
 
-    # Split into train/test
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Initialize KNN classifier
-    knn = KNeighborsClassifier(n_neighbors=5)
+    model = KNeighborsClassifier(n_neighbors=5)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    y_proba = model.predict_proba(X_test)[:,1]
 
-    # Train the model
-    knn.fit(X_train, y_train)
-
-    # Evaluate (optional)
-    accuracy = knn.score(X_test, y_test)
-    print(f"Validation Accuracy: {accuracy:.4f}")
-
-    # Save the trained model along with feature names
-    with open(pkl_filename, "wb") as f:
-        pickle.dump({"model": knn, "features": X.columns.tolist()}, f)
-
-    print(f"Model saved to {pkl_filename}")
-
-if __name__ == "__main__":
-    train_and_save_knn_model()
+    return {
+        "Accuracy": accuracy_score(y_test, y_pred),
+        "AUC": roc_auc_score(y_test, y_proba),
+        "Precision": precision_score(y_test, y_pred),
+        "Recall": recall_score(y_test, y_pred),
+        "F1": f1_score(y_test, y_pred)
+    }
