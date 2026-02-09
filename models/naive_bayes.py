@@ -1,10 +1,12 @@
+import os
+import pickle
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
 from sklearn.preprocessing import LabelEncoder
 
-def run_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv"):
+def run_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv",save_path="../saved_models/naive_bayes.pkl"):
     df = pd.read_csv(dataset_path)
     le = LabelEncoder()
     df["diagnosis"] = le.fit_transform(df["diagnosis"])
@@ -18,6 +20,10 @@ def run_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv"):
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
     y_proba = model.predict_proba(X_test)[:,1]
+    #save model
+    os.makedirs(os.path.dirname(save_path), exist_ok=True) 
+    with open(save_path, "wb") as f: 
+        pickle.dump(model, f)
 
     return {
         "Accuracy": accuracy_score(y_test, y_pred),
