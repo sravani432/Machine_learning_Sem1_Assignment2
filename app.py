@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 # Load trained model
 # -------------------------------
 # Example: assuming you saved a model as model.pkl in the model/ folder
-with open("model.ipynb", "rb") as f:
+with open("knn.ipynb", "rb") as f:
     model = pickle.load(f)
 
 # -------------------------------
