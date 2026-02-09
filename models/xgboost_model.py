@@ -24,7 +24,7 @@ def run_xgboost(dataset_path="data/breast-cancer-wisconsin-data.csv",save_path="
     os.makedirs(os.path.dirname(save_path), exist_ok=True) 
     with open(save_path, "wb") as f: 
         pickle.dump(model, f)
-
+    print(f"XGBoost model saved to {save_path}")
     return {
         "Accuracy": accuracy_score(y_test, y_pred),
         "AUC": roc_auc_score(y_test, y_proba),

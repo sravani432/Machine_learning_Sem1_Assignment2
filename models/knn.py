@@ -22,7 +22,6 @@ def run_knn(dataset_path="data/breast-cancer-wisconsin-data.csv",save_path="../s
     y_proba = model.predict_proba(X_test)[:,1]
 
     # Save model 
-    os.makedirs(os.path.dirname(save_path), exist_ok=True) 
     with open(save_path, "wb") as f: 
         pickle.dump(model, f)
 

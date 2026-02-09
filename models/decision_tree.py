@@ -21,7 +21,6 @@ def run_decision_tree(dataset_path="data/breast-cancer-wisconsin-data.csv",save_
     y_pred = model.predict(X_test)
     y_proba = model.predict_proba(X_test)[:,1]
 
-    os.makedirs(os.path.dirname(save_path), exist_ok=True) 
     with open(save_path, "wb") as f: 
         pickle.dump(model, f)
 

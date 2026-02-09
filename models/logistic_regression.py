@@ -27,6 +27,7 @@ def run_logistic_regression(dataset_path="data/breast-cancer-wisconsin-data.csv"
     os.makedirs(os.path.dirname(save_path), exist_ok=True) 
     with open(save_path, "wb") as f: 
         pickle.dump(model, f)
+    print(f"Logistic Regression model saved to {save_path}")
 
     return {
         "Accuracy": accuracy_score(y_test, y_pred),
