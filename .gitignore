@@ -17,11 +17,9 @@ env/
 *.log
 
 # Data and models (optional: keep only small sample data)
-*.csv
 *.tsv
 *.xlsx
 *.json
-*.pkl
 *.h5
 *.joblib
 
