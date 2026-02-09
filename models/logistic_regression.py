@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, reca
 from sklearn.preprocessing import LabelEncoder
 
 def run_logistic_regression(dataset_path="data/breast-cancer-wisconsin-data.csv"):
+    print("Running Logistic Regression...",dataset_path)
     df = pd.read_csv(dataset_path)
     le = LabelEncoder()
     df["diagnosis"] = le.fit_transform(df["diagnosis"])
