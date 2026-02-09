@@ -1,0 +1,39 @@
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Streamlit and local config
+.streamlit/
+*.log
+
+# Data and models (optional: keep only small sample data)
+*.csv
+*.tsv
+*.xlsx
+*.json
+*.pkl
+*.h5
+*.joblib
+
+# Large artifacts
+*.zip
+*.tar
+*.gz
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/project settings
+.vscode/
+.idea/
