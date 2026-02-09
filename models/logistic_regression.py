@@ -1,11 +1,17 @@
+import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
 from sklearn.preprocessing import LabelEncoder
 
-def run_logistic_regression(dataset_path="../data/breast-cancer-wisconsin-data.csv"):
+def run_logistic_regression(dataset_path=None):
+    if dataset_path is None:
+        # Build path relative to this file
+        dataset_path = os.path.join(os.path.dirname(__file__), "..", "data", "breast-cancer-wisconsin-data.csv")
+
     df = pd.read_csv(dataset_path)
+
     le = LabelEncoder()
     df["diagnosis"] = le.fit_transform(df["diagnosis"])  # M=1, B=0
 
@@ -19,11 +25,10 @@ def run_logistic_regression(dataset_path="../data/breast-cancer-wisconsin-data.c
     y_pred = model.predict(X_test)
     y_proba = model.predict_proba(X_test)[:,1]
 
-    metrics = {
+    return {
         "Accuracy": accuracy_score(y_test, y_pred),
         "AUC": roc_auc_score(y_test, y_proba),
         "Precision": precision_score(y_test, y_pred),
         "Recall": recall_score(y_test, y_pred),
         "F1": f1_score(y_test, y_pred)
     }
-    return metrics
