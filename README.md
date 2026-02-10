@@ -86,3 +86,17 @@ cd project-folder
 # Install dependencies
 pip install -r requirements.txt
 
+# Run the streamlit app 
+streamlit run app.py
+
+After running, trained models are automatically saved in the saved_models/ folder:
+
+saved_models/
+├── logistic_regression.pkl
+├── decision_tree.pkl
+├── knn.pkl
+├── naive_bayes.pkl
+├── random_forest.pkl
+├── xgboost.pkl
+
+These .pkl files can be reloaded later for predictions without retraining.
