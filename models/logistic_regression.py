@@ -1,5 +1,6 @@
 import pickle
 import os
+import json
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -45,11 +46,28 @@ def run_logistic_regression(dataset_path="data/breast-cancer-wisconsin-data.csv"
 
     y_pred = model.predict(X_test)
     y_proba = model.predict_proba(X_test)[:, 1]
-
-    return {
+    metrics = {
         "Accuracy": accuracy_score(y_test, y_pred),
         "AUC": roc_auc_score(y_test, y_proba),
         "Precision": precision_score(y_test, y_pred),
         "Recall": recall_score(y_test, y_pred),
         "F1": f1_score(y_test, y_pred)
     }
+
+    save_metrics("logistic_regression", metrics)
+    return metrics
+
+def save_metrics(model_name, metrics, file_path="results.json"):
+    # Load existing results if file exists
+    if os.path.exists(file_path):
+        with open(file_path, "r") as f:
+            results = json.load(f)
+    else:
+        results = {}
+
+    # Update with new model metrics
+    results[model_name] = metrics
+
+    # Save back to file
+    with open(file_path, "w") as f:
+        json.dump(results, f, indent=4)

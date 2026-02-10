@@ -20,7 +20,7 @@ This exercise demonstrates an end-to-end ML pipeline, from modeling to deploymen
 ---
 
 ## Dataset Description
-- **Dataset Source:** [[Add Kaggle/UCI link here](https://www.kaggle.com/datasets/thedevastator/uncovering-breast-cancer-diagnosis-with-wisconsi)]
+- **Dataset Source:** [(https://www.kaggle.com/datasets/thedevastator/uncovering-breast-cancer-diagnosis-with-wisconsi)]
 - **Type:** [Binary  classification]
 - **Number of Instances:** [570]
 - **Number of Features:** [32]
@@ -28,21 +28,42 @@ This exercise demonstrates an end-to-end ML pipeline, from modeling to deploymen
 - **Preprocessing Steps:** Missing value handling, encoding categorical variables, feature scaling.
 
 ---
+## Project Structure
+
+project-folder/
+│── app.py
+│── models/
+│   ├── logistic_regression.py
+│   ├── decision_tree.py
+│   ├── knn.py
+│   ├── naive_bayes.py
+│   ├── random_forest.py
+│   ├── xgboost_model.py
+│── saved_models/
+│   ├── logistic_regression.pkl
+│   ├── decision_tree.pkl
+│   ├── knn.pkl
+│   ├── naive_bayes.pkl
+│   ├── random_forest.pkl
+│   ├── xgboost.pkl
+│── data/
+│   └── breast-cancer-wisconsin-data.csv
+│── requirements.txt
+│── README.md
+
+----
 
 ## Comparison of Models and Metrics
 
-| ML Model Name        | Accuracy | AUC   | Precision | Recall | F1    | MCC   |
-|----------------------|----------|-------|-----------|--------|-------|-------|
-| Logistic Regression  | [val]    | [val] | [val]     | [val]  | [val] | [val] |
-| Decision Tree        | [val]    | [val] | [val]     | [val]  | [val] | [val] |
-| kNN                  | [val]    | [val] | [val]     | [val]  | [val] | [val] |
-| Naive Bayes          | [val]    | [val] | [val]     | [val]  | [val] | [val] |
-| Random Forest        | [val]    | [val] | [val]     | [val]  | [val] | [val] |
-| XGBoost              | [val]    | [val] | [val]     | [val]  | [val] | [val] |
+| Model | Accuracy | AUC | Precision | Recall | F1 |
+|-------|-------|-------|-------|-------|-------|
+| logistic_regression | 0.9561 | 0.9948 | 0.9750 | 0.9070 | 0.9398 |
+| decision_tree | 0.9386 | 0.9369 | 0.9091 | 0.9302 | 0.9195 |
+| knn | 0.7544 | 0.8102 | 0.7419 | 0.5349 | 0.6216 |
+| naive_bayes | 0.6140 | 0.8919 | 0.0000 | 0.0000 | 0.0000 |
+| random_forest | 0.9649 | 0.9972 | 0.9756 | 0.9302 | 0.9524 |
+| xgboost | 0.9561 | 0.9951 | 0.9524 | 0.9302 | 0.9412 |
 
-*(Replace `[val]` with actual computed metrics from your results.)*
-
----
 
 ## Observations on Model Performance
 
@@ -58,8 +79,10 @@ This exercise demonstrates an end-to-end ML pipeline, from modeling to deploymen
 ---
 
 ## How to Run the Streamlit App
-1. Clone the repository:
-   ```bash
-   git clone <your-repo-link>
-   cd project-folder
+# clone repo
+git clone https://github.com/sravani432/Machine_learning_Sem1_Assignment2
+cd project-folder
+
+# Install dependencies
+pip install -r requirements.txt
 
