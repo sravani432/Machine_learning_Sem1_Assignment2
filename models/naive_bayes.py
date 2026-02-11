@@ -52,7 +52,9 @@ def run_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv", save_p
         "AUC": roc_auc_score(y_test, y_proba),
         "Precision": precision_score(y_test, y_pred),
         "Recall": recall_score(y_test, y_pred),
-        "F1": f1_score(y_test, y_pred)
+        "F1": f1_score(y_test, y_pred),
+        "y_test": y_test.tolist(),
+        "y_pred": y_pred.tolist()
     }
 
     save_metrics("naive_bayes", metrics)
