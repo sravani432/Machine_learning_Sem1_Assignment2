@@ -7,7 +7,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
 from sklearn.preprocessing import LabelEncoder
 
-def train_and_save_knn(dataset_path="data/breast-cancer-wisconsin-data.csv", save_path="generated_models/knn.pkl"):
+def train_and_save_knn(dataset_path="data/breast-cancer-wisconsin-data.csv", save_path="saved_models/knn.pkl"):
     df = pd.read_csv(dataset_path)
     le = LabelEncoder()
     df["diagnosis"] = le.fit_transform(df["diagnosis"])
@@ -27,11 +27,11 @@ def train_and_save_knn(dataset_path="data/breast-cancer-wisconsin-data.csv", sav
     print(f"Model saved at {save_path}")
     return model, X_test, y_test
 
-def load_knn(save_path="/generated_models/knn.pkl"):
+def load_knn(save_path="saved_models/knn.pkl"):
     with open(save_path, "rb") as f:
         return pickle.load(f)
 
-def run_knn(dataset_path="data/breast-cancer-wisconsin-data.csv", save_path="generated_models/knn.pkl"):
+def run_knn(dataset_path="data/breast-cancer-wisconsin-data.csv", save_path="saved_models/knn.pkl"):
     # Try loading existing model
     if os.path.exists(save_path):
         model = load_knn(save_path)

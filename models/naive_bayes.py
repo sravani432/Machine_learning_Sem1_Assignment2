@@ -7,7 +7,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
 from sklearn.preprocessing import LabelEncoder
 
-def train_and_save_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv", save_path="generated_models/naive_bayes.pkl"):
+def train_and_save_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv", save_path="saved_models/naive_bayes.pkl"):
     df = pd.read_csv(dataset_path)
     le = LabelEncoder()
     df["diagnosis"] = le.fit_transform(df["diagnosis"])
@@ -27,11 +27,11 @@ def train_and_save_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.c
     print(f"Model saved at {save_path}")
     return model, X_test, y_test
 
-def load_naive_bayes(save_path="generated_models/naive_bayes.pkl"):
+def load_naive_bayes(save_path="saved_models/naive_bayes.pkl"):
     with open(save_path, "rb") as f:
         return pickle.load(f)
 
-def run_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv", save_path="generated_models/naive_bayes.pkl"):
+def run_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv", save_path="saved_models/naive_bayes.pkl"):
     # Try loading existing model
     if os.path.exists(save_path):
         model = load_naive_bayes(save_path)
