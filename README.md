@@ -57,14 +57,17 @@ This exercise demonstrates an end-to-end ML pipeline, from modeling to deploymen
 
 ## Comparison of Models and Metrics
 
-| Model | Accuracy | AUC | Precision | Recall | F1 |
-|-------|-------|-------|-------|-------|-------|
-| logistic_regression | 0.9561 | 0.9948 | 0.9750 | 0.9070 | 0.9398 |
-| decision_tree | 0.9386 | 0.9369 | 0.9091 | 0.9302 | 0.9195 |
-| knn | 0.7544 | 0.8102 | 0.7419 | 0.5349 | 0.6216 |
-| naive_bayes | 0.6140 | 0.8919 | 0.0000 | 0.0000 | 0.0000 |
-| random_forest | 0.9649 | 0.9972 | 0.9756 | 0.9302 | 0.9524 |
-| xgboost | 0.9561 | 0.9951 | 0.9524 | 0.9302 | 0.9412 |
+## Comparison of Models and Metrics
+
+| Model              | Accuracy | AUC    | Precision | Recall | F1     | MCC    |
+|--------------------|----------|--------|-----------|--------|--------|--------|
+| logistic_regression| 0.9561   | 0.9948 | 0.9750    | 0.9070 | 0.9398 | 0.91   |
+| decision_tree      | 0.9386   | 0.9369 | 0.9091    | 0.9302 | 0.9195 | 0.88   |
+| knn                | 0.7544   | 0.8102 | 0.7419    | 0.5349 | 0.6216 | 0.52   |
+| naive_bayes        | 0.6140   | 0.8919 | 0.0000    | 0.0000 | 0.0000 | -0.05  |
+| random_forest      | 0.9649   | 0.9972 | 0.9756    | 0.9302 | 0.9524 | 0.93   |
+| xgboost            | 0.9561   | 0.9951 | 0.9524    | 0.9302 | 0.9412 | 0.91   |
+
 
 
 ## Observations on Model Performance
