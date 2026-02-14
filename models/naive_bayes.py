@@ -4,7 +4,7 @@ import json
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score,matthews_corrcoef
 from sklearn.preprocessing import LabelEncoder
 
 def train_and_save_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv", save_path="saved_models/naive_bayes.pkl"):
@@ -53,6 +53,7 @@ def run_naive_bayes(dataset_path="data/breast-cancer-wisconsin-data.csv", save_p
         "Precision": precision_score(y_test, y_pred),
         "Recall": recall_score(y_test, y_pred),
         "F1": f1_score(y_test, y_pred),
+        "MCC": matthews_corrcoef(y_test, y_pred),
         "y_test": y_test.tolist(),
         "y_pred": y_pred.tolist()
     }
