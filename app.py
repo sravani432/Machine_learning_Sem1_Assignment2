@@ -13,6 +13,19 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 st.title("Breast Cancer Classification Model Evaluation App")
 
+# --- Dataset Download Option ---
+sample_dataset_path = "data/test_data.csv"   # adjust path to your dataset
+try:
+    sample_df = pd.read_csv(sample_dataset_path)
+    st.download_button(
+        label="Download Sample Dataset",
+        data=sample_df.to_csv(index=False),
+        file_name="test_data.csv",
+        mime="text/csv"
+    )
+except FileNotFoundError:
+    st.warning("Sample dataset not found at the specified path.")
+
 # --- Dataset Upload ---
 uploaded_file = st.file_uploader("Upload CSV dataset", type=["csv"])
 if uploaded_file is not None:
