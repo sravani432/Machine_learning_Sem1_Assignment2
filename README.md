@@ -30,26 +30,28 @@ This exercise demonstrates an end-to-end ML pipeline, from modeling to deploymen
 ---
 ## Project Structure
 
-project-folder/
-│── app.py
-│── models/
-│   ├── logistic_regression.py
-│   ├── decision_tree.py
-│   ├── knn.py
-│   ├── naive_bayes.py
-│   ├── random_forest.py
-│   ├── xgboost_model.py
-│── saved_models/
-│   ├── logistic_regression.pkl
-│   ├── decision_tree.pkl
-│   ├── knn.pkl
-│   ├── naive_bayes.pkl
-│   ├── random_forest.pkl
-│   ├── xgboost.pkl
-│── data/
-│   └── breast-cancer-wisconsin-data.csv
-│── requirements.txt
-│── README.md
+- app.py  
+- models/  
+  - logistic_regression.py  
+  - decision_tree.py  
+  - knn.py  
+  - naive_bayes.py  
+  - random_forest.py  
+  - xgboost_model.py  
+- saved_models/  
+  - logistic_regression.pkl  
+  - decision_tree.pkl  
+  - knn.pkl  
+  - naive_bayes.pkl  
+  - random_forest.pkl  
+  - xgboost.pkl  
+- data/  
+  - breast-cancer-wisconsin-data.csv  
+  - test_data.csv
+- requirements.txt  
+- results.json
+- README.md
+
 
 ----
 
